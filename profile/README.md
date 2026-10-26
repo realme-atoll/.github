@@ -5,7 +5,7 @@
   <p>
     <a href="https://github.com/realme-atoll"><img src="https://img.shields.io/badge/Platform-Qualcomm%20SM7125-blue?style=for-the-badge&logo=qualcomm" alt="Platform" /></a>
     <a href="https://github.com/realme-atoll/android_kernel_realme_sm7125"><img src="https://img.shields.io/badge/Kernel-Linux%204.14%20Unified-orange?style=for-the-badge&logo=linux" alt="Kernel" /></a>
-    <a href="https://github.com/realme-atoll/android_device_realme_sm7125-OFRP"><img src="https://img.shields.io/badge/Recovery-OrangeFox%20R12.0-ff6600?style=for-the-badge" alt="Recovery" /></a>
+    <a href="https://github.com/realme-atoll/recovery-manifest"><img src="https://img.shields.io/badge/Recovery-OFRP%20%7C%20TWRP-ff6600?style=for-the-badge" alt="Recovery" /></a>
   </p>
 </div>
 
@@ -35,9 +35,7 @@ realme-atoll/
 ├── ⚙️ Unified Platform (SM7125 / Atoll)
 │   ├── android_device_realme_sm7125-common    # Platform common device tree
 │   ├── android_vendor_realme_sm7125-common    # Platform common vendor blobs
-│   ├── android_kernel_realme_sm7125           # Linux 4.14 unified kernel source
-│   ├── android_device_realme_sm7125-OFRP      # OrangeFox Recovery Project tree
-│   └── crave_script                           # Automated Crave build orchestration scripts
+│   └── android_kernel_realme_sm7125           # Linux 4.14 unified kernel source
 │
 ├── 📱 Realme 6 Pro (RMX2061)
 │   ├── android_device_realme_RMX2061          # Device-specific tree
@@ -53,6 +51,14 @@ realme-atoll/
 │   ├── android_device_realme_RMX3081          # Device-specific tree
 │   ├── android_vendor_realme_RMX3081          # Proprietary vendor blobs
 │   └── RMX3081-manifest                       # Local ROM build manifest
+│
+├── 🛠️ Custom Recovery & Manifests
+│   ├── android_device_realme_sm7125-OFRP      # OrangeFox Recovery Project (OFRP) tree
+│   ├── android_device_realme_sm7125-TWRP      # TeamWin Recovery Project (TWRP) tree
+│   └── recovery-manifest                      # Unified recovery build manifest (ofrp/twrp)
+│
+├── 🚀 Build Automation & Tools
+│   └── crave_script                           # Automated Crave build orchestration scripts
 │
 └── 🎵 Audio Enhancements
     ├── hardware_dolby                         # Dolby Atmos audio implementation
@@ -76,6 +82,18 @@ git clone https://github.com/realme-atoll/RMX2170-manifest.git .repo/local_manif
 git clone https://github.com/realme-atoll/RMX3081-manifest.git .repo/local_manifests
 
 # Sync all trees:
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+```
+
+To sync recovery manifests for building OrangeFox or TWRP:
+
+```bash
+# For OrangeFox Recovery Project (OFRP):
+repo init -u https://github.com/realme-atoll/recovery-manifest.git -b ofrp
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+
+# For TeamWin Recovery Project (TWRP):
+repo init -u https://github.com/realme-atoll/recovery-manifest.git -b twrp
 repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 ```
 
